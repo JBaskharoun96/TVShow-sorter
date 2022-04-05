@@ -67,47 +67,53 @@ public class SortHandler {
         }
     }
 
+    // TODO: update sort logic
     public void mergeSort(int sortBy, boolean descend) {
 
         if (sortBy == 1 || sortBy == 2 || sortBy == 3) { // int columns
 
             if (descend) { // descending sort
 
-                if (Integer.parseInt(showsList[j].getShowDetails()[sortBy]) > Integer
-                        .parseInt(showsList[swapIndex].getShowDetails()[sortBy])) {
+                /*
+                 * if (Integer.parseInt(showsList[j].getShowDetails()[sortBy]) > Integer
+                 * .parseInt(showsList[swapIndex].getShowDetails()[sortBy])) {
+                 * 
+                 * swapIndex = j;
+                 * }
+                 * 
+                 * } else { // ascending sort
+                 * 
+                 * if (Integer.parseInt(showsList[j].getShowDetails()[sortBy]) < Integer
+                 * .parseInt(showsList[swapIndex].getShowDetails()[sortBy])) {
+                 * 
+                 * swapIndex = j;
+                 * }
+                 * }
+                 */
 
-                    swapIndex = j;
-                }
+            } else { // string columns
 
-            } else { // ascending sort
-
-                if (Integer.parseInt(showsList[j].getShowDetails()[sortBy]) < Integer
-                        .parseInt(showsList[swapIndex].getShowDetails()[sortBy])) {
-
-                    swapIndex = j;
-                }
+                /*
+                 * if (descend) { // descending sort
+                 * 
+                 * if (showsList[j].getShowDetails()[sortBy]
+                 * .compareTo(showsList[swapIndex].getShowDetails()[sortBy]) > 0) {
+                 * 
+                 * swapIndex = j;
+                 * }
+                 * 
+                 * } else { // ascending sort
+                 * 
+                 * if (showsList[j].getShowDetails()[sortBy]
+                 * .compareTo(showsList[swapIndex].getShowDetails()[sortBy]) < 0) {
+                 * 
+                 * swapIndex = j;
+                 * }
+                 * }
+                 */
             }
 
-        } else { // string columns
-
-            if (descend) { // descending sort
-
-                if (showsList[j].getShowDetails()[sortBy]
-                        .compareTo(showsList[swapIndex].getShowDetails()[sortBy]) > 0) {
-
-                    swapIndex = j;
-                }
-
-            } else { // ascending sort
-
-                if (showsList[j].getShowDetails()[sortBy]
-                        .compareTo(showsList[swapIndex].getShowDetails()[sortBy]) < 0) {
-
-                    swapIndex = j;
-                }
-            }
         }
-
     }
 
     // TODO: this bullshit function can't handle repeats! fuck!
