@@ -1,7 +1,5 @@
 package TVShow;
 
-import java.lang.String;
-
 public class SortHandler {
 
     private TVShow[] showsList;
@@ -69,52 +67,146 @@ public class SortHandler {
         }
     }
 
-    // TODO: update sort logic
-    public void mergeSort(int sortBy, boolean descend) {
+    public void mergeLists(TVShow[] newList, int leftStart, int rightEnd, int sortBy, boolean descend) {
 
-        if (sortBy == 1 || sortBy == 2 || sortBy == 3) { // int columns
+        int leftEnd = (rightEnd + leftStart) / 2;
+        int rightStart = leftEnd + 1;
+        int newSize = rightEnd - leftStart + 1;
 
-            if (descend) { // descending sort
+        int currLeft = leftStart;
+        int currRight = rightStart;
+        int currIndex = leftStart;
 
-                /*
-                 * if (Integer.parseInt(showsList[j].getShowDetails()[sortBy]) > Integer
-                 * .parseInt(showsList[swapIndex].getShowDetails()[sortBy])) {
-                 * 
-                 * swapIndex = j;
-                 * }
-                 * 
-                 * } else { // ascending sort
-                 * 
-                 * if (Integer.parseInt(showsList[j].getShowDetails()[sortBy]) < Integer
-                 * .parseInt(showsList[swapIndex].getShowDetails()[sortBy])) {
-                 * 
-                 * swapIndex = j;
-                 * }
-                 * }
-                 */
+        while (currLeft <= leftEnd && currRight <= rightEnd) {
+
+            if (sortBy == 1 || sortBy == 2 || sortBy == 3) { // int columns
+
+                if (descend) { // descending sort
+
+                    if (Integer.parseInt(showsList[currLeft].getShowDetails()[sortBy]) >= Integer
+                            .parseInt(showsList[currRight].getShowDetails()[sortBy])) {
+
+                        newList[currIndex] = showsList[currLeft];
+                        ++currLeft;
+
+                    } else {
+                        newList[currIndex] = showsList[currRight];
+                        ++currRight;
+                    }
+                    ++currIndex;
+
+                } else { // ascending sort
+
+                    if (Integer.parseInt(showsList[currLeft].getShowDetails()[sortBy]) <= Integer
+                            .parseInt(showsList[currRight].getShowDetails()[sortBy])) {
+
+                        newList[currIndex] = showsList[currLeft];
+                        ++currLeft;
+
+                    } else {
+                        newList[currIndex] = showsList[currRight];
+                        ++currRight;
+                    }
+                    ++currIndex;
+                }
 
             } else { // string columns
 
-                /*
-                 * if (descend) { // descending sort
-                 * 
-                 * if (showsList[j].getShowDetails()[sortBy]
-                 * .compareTo(showsList[swapIndex].getShowDetails()[sortBy]) > 0) {
-                 * 
-                 * swapIndex = j;
-                 * }
-                 * 
-                 * } else { // ascending sort
-                 * 
-                 * if (showsList[j].getShowDetails()[sortBy]
-                 * .compareTo(showsList[swapIndex].getShowDetails()[sortBy]) < 0) {
-                 * 
-                 * swapIndex = j;
-                 * }
-                 * }
-                 */
+                if (descend) { // descending sort
+
+                    if (showsList[currLeft].getShowDetails()[sortBy]
+                            .compareTo(showsList[currRight].getShowDetails()[sortBy]) >= 0) {
+
+                        newList[currIndex] = showsList[currLeft];
+                        ++currLeft;
+
+                    } else {
+                        newList[currIndex] = showsList[currRight];
+                        ++currRight;
+                    }
+                    ++currIndex;
+
+                } else { // ascending sort
+
+                    if (showsList[currLeft].getShowDetails()[sortBy]
+                            .compareTo(showsList[currRight].getShowDetails()[sortBy]) <= 0) {
+
+                        newList[currIndex] = showsList[currRight];
+                        ++currRight;
+
+                    } else {
+                        newList[currIndex] = showsList[currLeft];
+                        ++currLeft;
+                    }
+                    ++currIndex;
+                }
+
             }
+
         }
+
+        System.arraycopy(showsList, currLeft, newList, currIndex, leftEnd - currLeft + 1);
+        System.arraycopy(showsList, currRight, newList, currIndex, rightEnd - currRight + 1);
+        System.arraycopy(newList, leftStart, showsList, leftStart, newSize);
+    }
+
+    public void mergeSortStart(int sortBy, boolean descend) {
+
+        mergeSort(new TVShow[showsList.length], 0, showsList.length - 1, sortBy, descend);
+    }
+
+    // TODO: update sort logic
+    public void mergeSort(TVShow[] newList, int leftStart, int rightEnd, int sortBy, boolean descend) {
+
+        if (leftStart >= rightEnd) {
+            return;
+        }
+
+        int middle = (leftStart + rightEnd) / 2;
+
+        mergeSort(newList, leftStart, middle, sortBy, descend);
+        mergeSort(newList, middle + 1, rightEnd, sortBy, descend);
+
+        mergeLists(newList, leftStart, rightEnd, sortBy, descend);
+
+        // if (sortBy == 1 || sortBy == 2 || sortBy == 3) { // int columns
+
+        // if (descend) { // descending sort
+
+        // if (Integer.parseInt(showsList[j].getShowDetails()[sortBy]) > Integer
+        // .parseInt(showsList[swapIndex].getShowDetails()[sortBy])) {
+
+        // swapIndex = j;
+        // }
+
+        // } else { // ascending sort
+
+        // if (Integer.parseInt(showsList[j].getShowDetails()[sortBy]) < Integer
+        // .parseInt(showsList[swapIndex].getShowDetails()[sortBy])) {
+
+        // swapIndex = j;
+        // }
+        // }
+
+        // } else { // string columns
+
+        // if (descend) { // descending sort
+
+        // if (showsList[j].getShowDetails()[sortBy]
+        // .compareTo(showsList[swapIndex].getShowDetails()[sortBy]) > 0) {
+
+        // swapIndex = j;
+        // }
+
+        // } else { // ascending sort
+
+        // if (showsList[j].getShowDetails()[sortBy]
+        // .compareTo(showsList[swapIndex].getShowDetails()[sortBy]) < 0) {
+
+        // swapIndex = j;
+        // }
+        // }
+
     }
 
     public void selectionSort(int sortBy, boolean descend) {
@@ -167,13 +259,12 @@ public class SortHandler {
 
             } // end inner loop (j search for element)
 
-            // Swap the found minimum element with the first
-            // element
+            // Swap the found element with original index
             TVShow temp = showsList[swapIndex];
             showsList[swapIndex] = showsList[i];
             showsList[i] = temp;
         } // end outer loop (i iterating through each slot)
-    
+
     } // end function selectionSort
 
     public void printShows(int printInfo[]) {

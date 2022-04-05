@@ -19,7 +19,7 @@ public class TVShowDriver {
 
         { // Counting the number of lines in the provided file
             BufferedReader fileRead = new BufferedReader(
-                    new FileReader(filename) );
+                    new FileReader(filename));
 
             while (fileRead.readLine() != null) {
                 ++numShows;
@@ -32,7 +32,7 @@ public class TVShowDriver {
 
         // Start reader at beginning again, reading info out this time
         BufferedReader fileRead = new BufferedReader(
-                new FileReader(filename) );
+                new FileReader(filename));
 
         // Reading out headers from first line
         String headerLine = fileRead.readLine();
@@ -51,39 +51,41 @@ public class TVShowDriver {
             ++indexCount;
         }
         fileRead.close();
-        
+
         // Construct sort handler with full list of shows from csv
         SortHandler mrSorty = new SortHandler(showsList, headers);
 
-
         // Assigned sorts in order:
 
-        System.out.println("Ascending Insertion Sort by Name:");
-        mrSorty.insertionSort(0, false);
-        mrSorty.printShows(new int[]{0, 1, 6, 7});
+        // System.out.println();
+        // System.out.println("Ascending Insertion Sort by Name:");
+        // mrSorty.insertionSort(0, false);
+        // mrSorty.printShows(new int[] { 0, 1, 6, 7 });
 
-        System.out.println();
+        // System.out.println();
+        // System.out.println("Descending Insertion Sort by Seasons:");
+        // mrSorty.insertionSort(2, true);
+        // mrSorty.printShows(new int[] { 0, 1, 2 });
 
-        System.out.println("Descending Insertion Sort by Seasons:");
-        mrSorty.insertionSort(2, true);
-        mrSorty.printShows(new int[]{0, 1, 2});
+        // System.out.println();
+        // System.out.println("Ascending Selection Sort by Year:");
+        // mrSorty.selectionSort(1, false);
+        // mrSorty.printShows(new int[] { 0, 1, 2 });
 
-        System.out.println("Ascending Selection Sort by Year:");
-        mrSorty.selectionSort(1, false);
-        mrSorty.printShows(new int[]{0, 1, 2});
+        // System.out.println();
+        // System.out.println("Descending Selection Sort by Genre:");
+        // mrSorty.selectionSort(5, true);
+        // mrSorty.printShows(new int[] { 0, 3, 5 });
 
-        System.out.println("Descending Selection Sort by Genre:");
-        mrSorty.selectionSort(5, true);
-        mrSorty.printShows(new int[]{0, 3, 5});
+        // System.out.println();
+        // System.out.println("Descending Merge sort by Network:");
+        // mrSorty.mergeSortStart(4, true);
+        // mrSorty.printShows(new int[] { 0, 1, 2, 4 });
 
-        for (int i = 0; i < headers.length; i++) {
-            // System.out.printf("%20s ", headers[i]);
-        }
-
-        for (int j = 0; j < numShows; ++j) {
-
-            // System.out.println(showsList[j].toString());
-        }
+        // System.out.println();
+        // System.out.println("Ascending Merge Sort by Episodes");
+        // mrSorty.mergeSortStart(3, false);
+        // mrSorty.printShows(new int[] { 0, 1, 3, 4 });
 
     }
 
