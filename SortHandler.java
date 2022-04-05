@@ -1,5 +1,7 @@
 package TVShow;
 
+import java.lang.String;
+
 public class SortHandler {
 
     private TVShow[] showsList;
@@ -112,17 +114,14 @@ public class SortHandler {
                  * }
                  */
             }
-
         }
     }
 
-    // TODO: this bullshit function can't handle repeats! fuck!
     public void selectionSort(int sortBy, boolean descend) {
 
         // select one number on each pass through and move forward
         for (int i = 0; i < showsList.length - 1; ++i) {
 
-            // Find the minimum element in unsorted array
             int swapIndex = i;
 
             for (int j = i + 1; j < showsList.length; ++j) {
@@ -165,18 +164,21 @@ public class SortHandler {
                         }
                     }
                 }
-                // Swap the found minimum element with the first
-                // element
-                TVShow temp = showsList[swapIndex];
-                showsList[swapIndex] = showsList[i];
-                showsList[i] = temp;
-            }
-        }
-    }
+
+            } // end inner loop (j search for element)
+
+            // Swap the found minimum element with the first
+            // element
+            TVShow temp = showsList[swapIndex];
+            showsList[swapIndex] = showsList[i];
+            showsList[i] = temp;
+        } // end outer loop (i iterating through each slot)
+    
+    } // end function selectionSort
 
     public void printShows(int printInfo[]) {
 
-        String divider = "-";
+        String divider = "------------------------";
 
         for (int i = 0; i < printInfo.length; ++i) {
 
@@ -185,7 +187,7 @@ public class SortHandler {
         System.out.println();
         for (int k = 0; k < printInfo.length; ++k) {
 
-            System.out.print(divider.repeat(24));
+            System.out.print(divider);
         }
         System.out.println();
 

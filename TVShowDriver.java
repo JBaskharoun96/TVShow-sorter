@@ -14,9 +14,12 @@ public class TVShowDriver {
         String[] content = null;
         String dataLine = null;
 
+        // Edit filename or set path here if needed
+        String filename = "tv_shows.csv";
+
         { // Counting the number of lines in the provided file
             BufferedReader fileRead = new BufferedReader(
-                    new FileReader("C:\\Users\\jbask\\Code\\Java\\TVShow\\tv_shows.csv"));
+                    new FileReader(filename) );
 
             while (fileRead.readLine() != null) {
                 ++numShows;
@@ -29,7 +32,7 @@ public class TVShowDriver {
 
         // Start reader at beginning again, reading info out this time
         BufferedReader fileRead = new BufferedReader(
-                new FileReader("C:\\Users\\jbask\\Code\\Java\\TVShow\\tv_shows.csv"));
+                new FileReader(filename) );
 
         // Reading out headers from first line
         String headerLine = fileRead.readLine();
