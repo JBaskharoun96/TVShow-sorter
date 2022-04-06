@@ -52,40 +52,79 @@ public class TVShowDriver {
         }
         fileRead.close();
 
-        // Construct sort handler with full list of shows from csv
+        // Construct sort handler with list of shows from csv
         SortHandler mrSorty = new SortHandler(showsList, headers);
 
-        // Assigned sorts in order:
+        // Construct search handler with list of shows from csv
+        SearchHandler mrSearchy = new SearchHandler(showsList, headers);
 
-        // System.out.println();
-        // System.out.println("Ascending Insertion Sort by Name:");
-        // mrSorty.insertionSort(0, false);
-        // mrSorty.printShows(new int[] { 0, 1, 6, 7 });
+        // Sorts
 
-        // System.out.println();
-        // System.out.println("Descending Insertion Sort by Seasons:");
-        // mrSorty.insertionSort(2, true);
-        // mrSorty.printShows(new int[] { 0, 1, 2 });
+        System.out.println();
+        System.out.println("Insertion Sort 1: Ascending Insertion Sort by Name:");
+        mrSorty.insertionSort(0, false);
+        mrSorty.printShows(new int[] { 0, 1, 6, 7 });
 
-        // System.out.println();
-        // System.out.println("Ascending Selection Sort by Year:");
-        // mrSorty.selectionSort(1, false);
-        // mrSorty.printShows(new int[] { 0, 1, 2 });
+        System.out.println();
+        System.out.println("Insertion Sort 2: Descending Insertion Sort by Seasons:");
+        mrSorty.insertionSort(2, true);
+        mrSorty.printShows(new int[] { 0, 1, 2 });
 
-        // System.out.println();
-        // System.out.println("Descending Selection Sort by Genre:");
-        // mrSorty.selectionSort(5, true);
-        // mrSorty.printShows(new int[] { 0, 3, 5 });
+        System.out.println();
+        System.out.println("Selection Sort 1: Ascending Selection Sort by Year:");
+        mrSorty.selectionSort(1, false);
+        mrSorty.printShows(new int[] { 0, 1, 2 });
 
-        // System.out.println();
-        // System.out.println("Descending Merge sort by Network:");
-        // mrSorty.mergeSortStart(4, true);
-        // mrSorty.printShows(new int[] { 0, 1, 2, 4 });
+        System.out.println();
+        System.out.println("Selection Sort 2: Descending Selection Sort by Genre:");
+        mrSorty.selectionSort(5, true);
+        mrSorty.printShows(new int[] { 0, 3, 5 });
 
-        // System.out.println();
-        // System.out.println("Ascending Merge Sort by Episodes");
-        // mrSorty.mergeSortStart(3, false);
-        // mrSorty.printShows(new int[] { 0, 1, 3, 4 });
+        System.out.println();
+        System.out.println("Merge Sort 1: Descending Merge sort by Network:");
+        mrSorty.mergeSortStart(4, true);
+        mrSorty.printShows(new int[] { 0, 1, 2, 4 });
+
+        System.out.println();
+        System.out.println("Merge Sort 2: Ascending Merge Sort by Episodes:");
+        mrSorty.mergeSortStart(3, false);
+        mrSorty.printShows(new int[] { 0, 1, 3, 4 });
+
+        // Searches
+
+        System.out.println();
+        System.out.println("Sequential Search 1: Sequential Search for 2 Seasons:");
+        mrSearchy.sequentialSearchMatch(2, "2");
+
+        System.out.println();
+        System.out.println("Sequential Search 2: Sequential Search for >100 Episodes:");
+        mrSearchy.sequentialSearchPass(3, "100");
+
+        System.out.println();
+        mrSorty.insertionSort(4, false);
+        System.out.println("Binary Search 1: Binary Search for CBS Shows:");
+        mrSearchy.binarySearchHandler(4, "CBS");
+
+        System.out.println();
+        mrSorty.selectionSort(5, false);
+        System.out.println("Binary Search 2: Binary Search for Fantasy Shows:");
+        mrSearchy.binarySearchHandler(5, "Fantasy");
+
+        System.out.println();
+        System.out.println("Binary Search 3: Binary Search for Drama Shows:");
+        mrSearchy.binarySearchHandler(5, "Drama");
+
+        // Bonus
+
+        System.out.println();
+        System.out.println("Bonus Sort 1: Ascending Sort by Male Lead Last Name:");
+        mrSorty.selectionSort(6, false);
+        mrSorty.printShows(new int[] { 0, 1, 6, 7 });
+
+        System.out.println();
+        System.out.println("Bonus Sort 2: Descending Sort by Female Lead Last Name:");
+        mrSorty.selectionSort(7, true);
+        mrSorty.printShows(new int[] { 0, 1, 6, 7 });
 
     }
 

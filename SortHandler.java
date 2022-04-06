@@ -23,7 +23,7 @@ public class SortHandler {
 
             int j = i - 1;
 
-            // columns 1, 2, 3 contain numeric data which must be passed through parseInt()
+            // columns 1, 2, 3 contain numeric data passed through parseInt()
             if (sortBy == 1 || sortBy == 2 || sortBy == 3) {
 
                 if (descend) { // descending sort
@@ -43,7 +43,7 @@ public class SortHandler {
                         --j;
                     }
                 }
-            } else { // all other columns involve string comparisons
+            } else { // all other columns do string comparisons
 
                 if (descend) { // descending sort
 
@@ -115,7 +115,7 @@ public class SortHandler {
                 if (descend) { // descending sort
 
                     if (showsList[currLeft].getShowDetails()[sortBy]
-                            .compareTo(showsList[currRight].getShowDetails()[sortBy]) >= 0) {
+                            .compareTo(showsList[currRight].getShowDetails()[sortBy]) > 0) {
 
                         newList[currIndex] = showsList[currLeft];
                         ++currLeft;
@@ -129,7 +129,7 @@ public class SortHandler {
                 } else { // ascending sort
 
                     if (showsList[currLeft].getShowDetails()[sortBy]
-                            .compareTo(showsList[currRight].getShowDetails()[sortBy]) <= 0) {
+                            .compareTo(showsList[currRight].getShowDetails()[sortBy]) < 0) {
 
                         newList[currIndex] = showsList[currRight];
                         ++currRight;
@@ -155,7 +155,6 @@ public class SortHandler {
         mergeSort(new TVShow[showsList.length], 0, showsList.length - 1, sortBy, descend);
     }
 
-    // TODO: update sort logic
     public void mergeSort(TVShow[] newList, int leftStart, int rightEnd, int sortBy, boolean descend) {
 
         if (leftStart >= rightEnd) {
@@ -168,45 +167,6 @@ public class SortHandler {
         mergeSort(newList, middle + 1, rightEnd, sortBy, descend);
 
         mergeLists(newList, leftStart, rightEnd, sortBy, descend);
-
-        // if (sortBy == 1 || sortBy == 2 || sortBy == 3) { // int columns
-
-        // if (descend) { // descending sort
-
-        // if (Integer.parseInt(showsList[j].getShowDetails()[sortBy]) > Integer
-        // .parseInt(showsList[swapIndex].getShowDetails()[sortBy])) {
-
-        // swapIndex = j;
-        // }
-
-        // } else { // ascending sort
-
-        // if (Integer.parseInt(showsList[j].getShowDetails()[sortBy]) < Integer
-        // .parseInt(showsList[swapIndex].getShowDetails()[sortBy])) {
-
-        // swapIndex = j;
-        // }
-        // }
-
-        // } else { // string columns
-
-        // if (descend) { // descending sort
-
-        // if (showsList[j].getShowDetails()[sortBy]
-        // .compareTo(showsList[swapIndex].getShowDetails()[sortBy]) > 0) {
-
-        // swapIndex = j;
-        // }
-
-        // } else { // ascending sort
-
-        // if (showsList[j].getShowDetails()[sortBy]
-        // .compareTo(showsList[swapIndex].getShowDetails()[sortBy]) < 0) {
-
-        // swapIndex = j;
-        // }
-        // }
-
     }
 
     public void selectionSort(int sortBy, boolean descend) {
@@ -239,18 +199,31 @@ public class SortHandler {
 
                 } else { // string columns
 
+                    String toCheck;
+                    String toSwap;
+                    String[] fullName;
+
+                    if (sortBy == 6 || sortBy == 7) {
+                        fullName = showsList[j].getShowDetails()[sortBy].split(" ");
+                        toCheck = fullName[1];
+
+                        fullName = showsList[swapIndex].getShowDetails()[sortBy].split(" ");
+                        toSwap = fullName[1];
+                    } else {
+                        toCheck = showsList[j].getShowDetails()[sortBy];
+                        toSwap = showsList[swapIndex].getShowDetails()[sortBy];
+                    }
+
                     if (descend) { // descending sort
 
-                        if (showsList[j].getShowDetails()[sortBy]
-                                .compareTo(showsList[swapIndex].getShowDetails()[sortBy]) > 0) {
+                        if (toCheck.compareTo(toSwap) > 0) {
 
                             swapIndex = j;
                         }
 
                     } else { // ascending sort
 
-                        if (showsList[j].getShowDetails()[sortBy]
-                                .compareTo(showsList[swapIndex].getShowDetails()[sortBy]) < 0) {
+                        if (toCheck.compareTo(toSwap) < 0) {
 
                             swapIndex = j;
                         }
