@@ -76,6 +76,27 @@ public class SortHandler {
         }
     }
 
+    // mergeSort initializer function
+    public void mergeSortStart(int sortBy, boolean descend) {
+
+        mergeSort(new TVShow[showsList.length], 0, showsList.length - 1, sortBy, descend);
+    }
+
+    // splits out subarrays recursively until down to a single element, then calls mergeLists
+    public void mergeSort(TVShow[] newList, int leftStart, int rightEnd, int sortBy, boolean descend) {
+
+        if (leftStart >= rightEnd) {
+            return;
+        }
+
+        int middle = (leftStart + rightEnd) / 2;
+
+        mergeSort(newList, leftStart, middle, sortBy, descend);
+        mergeSort(newList, middle + 1, rightEnd, sortBy, descend);
+
+        mergeLists(newList, leftStart, rightEnd, sortBy, descend);
+    }
+    
     // function merges lists back together after being split out by mergeSort
     public void mergeLists(TVShow[] newList, int leftStart, int rightEnd, int sortBy, boolean descend) {
 
@@ -162,27 +183,6 @@ public class SortHandler {
 
         // copy finished new list back into original showlist
         System.arraycopy(newList, leftStart, showsList, leftStart, newSize);
-    }
-
-    // mergeSort initializer function
-    public void mergeSortStart(int sortBy, boolean descend) {
-
-        mergeSort(new TVShow[showsList.length], 0, showsList.length - 1, sortBy, descend);
-    }
-
-    // splits out subarrays recursively until down to a single element, then calls mergeLists
-    public void mergeSort(TVShow[] newList, int leftStart, int rightEnd, int sortBy, boolean descend) {
-
-        if (leftStart >= rightEnd) {
-            return;
-        }
-
-        int middle = (leftStart + rightEnd) / 2;
-
-        mergeSort(newList, leftStart, middle, sortBy, descend);
-        mergeSort(newList, middle + 1, rightEnd, sortBy, descend);
-
-        mergeLists(newList, leftStart, rightEnd, sortBy, descend);
     }
 
     // checks through array to find next appropriate element then swaps it in
