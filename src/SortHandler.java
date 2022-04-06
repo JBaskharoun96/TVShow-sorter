@@ -4,7 +4,6 @@
  * 
  *  The SortHandler class handles all sorting
  */
-package TVShow;
 
 public class SortHandler {
 

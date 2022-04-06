@@ -4,7 +4,6 @@
  * 
  *  The SearchHandler class handles all searching
  */
-package TVShow;
 
 public class SearchHandler {
 

@@ -5,7 +5,6 @@
  *  The TVShowDriver class is the main driver, initializes objects, 
  *  calls methods, and directs program control flow
  */
-package TVShow;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

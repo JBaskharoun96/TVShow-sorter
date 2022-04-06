@@ -4,7 +4,6 @@
  * 
  *  The TVShow class holds TVShow object information
  */
-package TVShow;
 
 public class TVShow {
 
@@ -29,7 +28,10 @@ public class TVShow {
 
     @Override
     public String toString() {
-        return "TVShow [showDetails=" + Arrays.toString(showDetails) + "]";
+        return "Class: TVShow\nName: " + showDetails[0] + ", Year: " + showDetails[1]
+                + "\nSeasons: " + showDetails[2] + ", Episodes: " + showDetails[3]
+                + "\nNetwork: " + showDetails[4] + ", Genre: " + showDetails[5]
+                + "\nMale Lead: " + showDetails[6] + ", Female Lead: " + showDetails[7];
     }
 
     // Getters and Setters
