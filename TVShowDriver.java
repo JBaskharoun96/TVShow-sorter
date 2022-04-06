@@ -1,3 +1,10 @@
+/*  Author: Jonathan Baskharoun
+ *  Date: 04/06/2022
+ *  Version: Java 1.8
+ * 
+ *  The TVShowDriver class is the main driver, initializes objects, 
+ *  calls methods, and directs program control flow
+ */
 package TVShow;
 
 import java.io.BufferedReader;
@@ -17,21 +24,23 @@ public class TVShowDriver {
         // Edit filename or set path here if needed
         String filename = "tv_shows.csv";
 
-        { // Counting the number of lines in the provided file
-            BufferedReader fileRead = new BufferedReader(
-                    new FileReader(filename));
+        BufferedReader fileRead;
 
-            while (fileRead.readLine() != null) {
-                ++numShows;
-            }
-            --numShows; // first line is header names, so -1
-            fileRead.close();
+        // Counting the number of lines in the provided file
+        fileRead = new BufferedReader(
+                new FileReader(filename));
+
+        while (fileRead.readLine() != null) {
+            ++numShows;
         }
+        --numShows; // First line is header names, so -1 line
+        fileRead.close();
 
+        // Initialize TVShow array size based on counted lines
         TVShow[] showsList = new TVShow[numShows];
 
         // Start reader at beginning again, reading info out this time
-        BufferedReader fileRead = new BufferedReader(
+        fileRead = new BufferedReader(
                 new FileReader(filename));
 
         // Reading out headers from first line
@@ -44,9 +53,10 @@ public class TVShowDriver {
             // Splitting out data from csv into array of strings
             content = dataLine.split(",");
 
-            // There are 8 pieces of info per TVShow, same order on each line
+            // Use string array with TVShow info to init new TVShow object
             TVShow tmp = new TVShow(content);
 
+            // Add TVShow object to array holding full list of TVShows
             showsList[indexCount] = tmp;
             ++indexCount;
         }
@@ -61,7 +71,7 @@ public class TVShowDriver {
         // Sorts
 
         System.out.println();
-        System.out.println("Insertion Sort 1: Ascending Insertion Sort by Name:");
+        System.out.println("Insertion Sort 1: Ascending Insertion Sort by TV Show Name:");
         mrSorty.insertionSort(0, false);
         mrSorty.printShows(new int[] { 0, 1, 6, 7 });
 

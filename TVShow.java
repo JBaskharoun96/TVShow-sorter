@@ -1,10 +1,15 @@
+/*  Author: Jonathan Baskharoun
+ *  Date: 04/06/2022
+ *  Version: Java 1.8
+ * 
+ *  The TVShow class holds TVShow object information
+ */
 package TVShow;
-
-import java.util.Arrays;
 
 public class TVShow {
 
-    /*
+    /* Holding info for each TVShow in a String array with the following index:
+     * 
      * 0. Name
      * 1. Year
      * 2. numSeasons
@@ -14,7 +19,6 @@ public class TVShow {
      * 6. maleLead
      * 7. femaleLead
      */
-
     private String[] showDetails;
 
     // Constructor
@@ -36,5 +40,5 @@ public class TVShow {
     public void setShowDetails(String[] showDetails) {
         this.showDetails = showDetails;
     }
-    
+
 }
